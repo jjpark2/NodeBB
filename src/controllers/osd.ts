@@ -56,15 +56,16 @@ function generateXML(): string {
     }], { declaration: true, indent: '\t' });
 }
 
-type nextfunction = () => void;
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-export default function handle(req, res, next: nextfunction) {
+export default function handle(req, res, next) {
     if (plugins.hooks.hasListeners('filter:search.query')) {
         /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
         @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
         res.type('application/opensearchdescription+xml').send(generateXML());
     } else {
+        /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
+        @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
         next();
     }
 }
