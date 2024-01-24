@@ -12,6 +12,7 @@ function trimToLength(string: string, length: number): string {
 
 
 function generateXML(): string {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
     return xml([{
         OpenSearchDescription: [
             {
@@ -56,6 +57,7 @@ function generateXML(): string {
 
 type nextfunction = () => void;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 export default function handle(req, res, next: nextfunction) {
     if (plugins.hooks.hasListeners('filter:search.query')) {
         res.type('application/opensearchdescription+xml').send(generateXML());
