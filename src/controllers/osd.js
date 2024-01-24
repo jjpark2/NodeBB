@@ -11,6 +11,8 @@ function trimToLength(string, length) {
     return string.trim().substring(0, length).trim();
 }
 function generateXML() {
+    /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
+        @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call*/
     return (0, xml_1.default)([{
             OpenSearchDescription: [
                 {
@@ -52,8 +54,11 @@ function generateXML() {
             ],
         }], { declaration: true, indent: '\t' });
 }
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 function handle(req, res, next) {
     if (plugins_1.default.hooks.hasListeners('filter:search.query')) {
+        /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
+        @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call*/
         res.type('application/opensearchdescription+xml').send(generateXML());
     }
     else {
