@@ -56,12 +56,21 @@ function generateXML(): string {
     }], { declaration: true, indent: '\t' });
 }
 
+type return_type = {
+    send(str: string) : void
+
+}
+
+type res_type = {
+    type(str: string) : return_type
+
+}
+
+
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
-export default function handle(req, res, next) {
+export default function handle(req, res : res_type, next) {
     if (plugins.hooks.hasListeners('filter:search.query')) {
-        /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
-        @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
         res.type('application/opensearchdescription+xml').send(generateXML());
     } else {
         /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,

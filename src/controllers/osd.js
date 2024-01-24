@@ -57,8 +57,6 @@ function generateXML() {
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 function handle(req, res, next) {
     if (plugins_1.default.hooks.hasListeners('filter:search.query')) {
-        /* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,
-        @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call */
         res.type('application/opensearchdescription+xml').send(generateXML());
     }
     else {
