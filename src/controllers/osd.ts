@@ -1,8 +1,8 @@
 
-
 import xml from 'xml';
 import nconf from 'nconf';
 
+import { Request, Response } from 'express';
 import plugins from '../plugins';
 import meta from '../meta';
 
@@ -55,7 +55,9 @@ function generateXML(): string {
     }], { declaration: true, indent: '\t' });
 }
 
-export default function handle(req, res, next) {
+type nextfunction = () => void
+
+export default function handle(req : Request, res : Response, next: nextfunction) {
     if (plugins.hooks.hasListeners('filter:search.query')) {
         res.type('application/opensearchdescription+xml').send(generateXML());
     } else {
